@@ -1,9 +1,10 @@
 import socket
 
-ADDRESS = 'www.google.com'
+HOST = 'www.google.com'
 PORT = 80
 
-s = socket.create_connection((ADDRESS, PORT))
+address = socket.gethostbyname(HOST)
+s = socket.create_connection((address, PORT))
 
 s.sendall(b'GET / HTTP/1.1\r\n\r\n')
 s.shutdown(socket.SHUT_WR)
