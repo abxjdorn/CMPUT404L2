@@ -10,9 +10,13 @@ with socket.socket() as s:
 
     while True:
         conn, addr = s.accept()
+        print(conn, addr)
+        message = b''
         while True:
             data = conn.recv(4096)
             time.sleep(0.5)
+            message += data
             conn.sendall(data)
             if not data: break
+        print(message)
         conn.close()
