@@ -4,7 +4,8 @@ HOST = 'localhost'
 PORT = 8001
 
 address = socket.gethostbyname(HOST)
-s = socket.create_connection((address, PORT))
+s = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+s.connect((address, PORT))
 
 s.sendall(b'GET / HTTP/1.1\r\n\r\n')
 s.shutdown(socket.SHUT_WR)

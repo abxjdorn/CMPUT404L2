@@ -9,7 +9,8 @@ local_address = socket.gethostbyname(LOCAL_HOST)
 remote_address = socket.gethostbyname(REMOTE_HOST)
 
 def handle_request(conn, addr):
-    outside = socket.create_connection((remote_address, REMOTE_PORT))
+    outside = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+    outside.connect((remote_address, REMOTE_PORT))
     while True:
         data = conn.recv(4096)
         outside.sendall(data)
